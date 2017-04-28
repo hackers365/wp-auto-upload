@@ -77,7 +77,9 @@ class ImageUploader
      */
     public function getFilename()
     {
-        $filename = basename($this->url);
+        //$filename = basename($this->url);
+        $url_info = parse_url($this->url);
+        $filename = basename($url_info['path']) . '?' . $url_info['query'];
         preg_match('/(.*)?(\.+[^.]*)$/', $filename, $name_parts);
 
         $this->filename = $name_parts[1];
