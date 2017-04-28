@@ -13,7 +13,11 @@ class ImageUploader
     public function __construct($url, $alt, $post)
     {
         $this->post = $post;
-        $this->url = $url;
+        if (0 === stripos($url, '//')) {
+            $this->url = 'http:' . $url;
+        } else {
+            $this->url = $url;
+        }
         $this->alt = $alt;
     }
 
